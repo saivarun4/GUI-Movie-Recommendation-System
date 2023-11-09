@@ -1,10 +1,10 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox, font
 import requests
 
 # Define the functions for fetching data from the API
 def get_actor_id(api_key, actor_name):
-    search_url = "<API_KEY>"
+    search_url = "<API_URL>"
 
     params = {
         "api_key": api_key,
@@ -20,7 +20,7 @@ def get_actor_id(api_key, actor_name):
         return None
 
 def get_genre_id(api_key, genre_name):
-    genres_url = "https://api.themoviedb.org/3/genre/movie/list"
+    genres_url = "<GENRE_URL>"
 
     params = {
         "api_key": api_key,
@@ -37,7 +37,7 @@ def get_genre_id(api_key, genre_name):
     return None
 
 def get_movie_suggestions(api_key, num_suggestions, genre=None, actor=None, rating=None, year=None):
-    base_url = "https://api.themoviedb.org/3/discover/movie"
+    base_url = "<BASE_URL>"
 
     params = {
         "api_key": api_key,
@@ -109,46 +109,58 @@ api_key = "<API_KEY>"
 # Create the main window
 root = tk.Tk()
 root.title("Movie Suggestion System")
+root.configure(background='#f5f5f5')  # Set background color
 
-# Create and place GUI elements (labels, entries, button, text widget)
-num_suggestions_label = tk.Label(root, text="Number of Suggestions:")
-num_suggestions_entry = tk.Entry(root)
+# Customize fonts and styles
+title_font = font.Font(family="Helvetica", size=18, weight="bold")
+label_font = font.Font(family="Helvetica", size=12)
+entry_font = font.Font(family="Helvetica", size=12)
+button_font = font.Font(family="Helvetica", size=14, weight="bold")
 
-genre_label = tk.Label(root, text="Preferred Genre:")
-genre_entry = tk.Entry(root)
+# Create and place GUI elements with customized appearance
+num_suggestions_label = tk.Label(root, text="Number of Suggestions:", font=label_font, background='#f5f5f5')
+num_suggestions_entry = tk.Entry(root, font=entry_font)
 
-actor_label = tk.Label(root, text="Actor:")
-actor_entry = tk.Entry(root)
+genre_label = tk.Label(root, text="Preferred Genre:", font=label_font, background='#f5f5f5')
+genre_entry = tk.Entry(root, font=entry_font)
 
-rating_label = tk.Label(root, text="Minimum IMDb Rating:")
-rating_entry = tk.Entry(root)
+actor_label = tk.Label(root, text="Actor:", font=label_font, background='#f5f5f5')
+actor_entry = tk.Entry(root, font=entry_font)
 
-year_label = tk.Label(root, text="Release Year:")
-year_entry = tk.Entry(root)
+rating_label = tk.Label(root, text="Minimum IMDb Rating:", font=label_font, background='#f5f5f5')
+rating_entry = tk.Entry(root, font=entry_font)
 
-get_suggestions_button = tk.Button(root, text="Get Suggestions", command=show_movie_suggestions)
+year_label = tk.Label(root, text="Release Year:", font=label_font, background='#f5f5f5')
+year_entry = tk.Entry(root, font=entry_font)
 
-suggestions_text = tk.Text(root, wrap=tk.WORD, height=15, width=60)
+get_suggestions_button = tk.Button(root, text="Get Suggestions", font=button_font, command=show_movie_suggestions, bg='#4caf50', fg='white')
+
+suggestions_text = tk.Text(root, wrap=tk.WORD, font=entry_font, height=15, width=60)
 
 # Place elements on the grid
-num_suggestions_label.grid(row=0, column=0, padx=10, pady=10)
-num_suggestions_entry.grid(row=0, column=1, padx=10, pady=10)
+num_suggestions_label.grid(row=0, column=0, padx=10, pady=10, sticky='w')
+num_suggestions_entry.grid(row=0, column=1, padx=10, pady=10, sticky='w')
 
-genre_label.grid(row=1, column=0, padx=10, pady=10)
-genre_entry.grid(row=1, column=1, padx=10, pady=10)
+genre_label.grid(row=1, column=0, padx=10, pady=10, sticky='w')
+genre_entry.grid(row=1, column=1, padx=10, pady=10, sticky='w')
 
-actor_label.grid(row=2, column=0, padx=10, pady=10)
-actor_entry.grid(row=2, column=1, padx=10, pady=10)
+actor_label.grid(row=2, column=0, padx=10, pady=10, sticky='w')
+actor_entry.grid(row=2, column=1, padx=10, pady=10, sticky='w')
 
-rating_label.grid(row=3, column=0, padx=10, pady=10)
-rating_entry.grid(row=3, column=1, padx=10, pady=10)
+rating_label.grid(row=3, column=0, padx=10, pady=10, sticky='w')
+rating_entry.grid(row=3, column=1, padx=10, pady=10, sticky='w')
 
-year_label.grid(row=4, column=0, padx=10, pady=10)
-year_entry.grid(row=4, column=1, padx=10, pady=10)
+year_label.grid(row=4, column=0, padx=10, pady=10, sticky='w')
+year_entry.grid(row=4, column=1, padx=10, pady=10, sticky='w')
 
-get_suggestions_button.grid(row=5, columnspan=2, padx=10, pady=10)
+get_suggestions_button.grid(row=5, columnspan=2, padx=10, pady=20, sticky='ew')
 
 suggestions_text.grid(row=6, columnspan=2, padx=10, pady=10)
 
 # Start the GUI event loop
 root.mainloop()
+
+
+
+
+
