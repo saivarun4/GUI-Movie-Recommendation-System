@@ -104,7 +104,7 @@ def show_movie_suggestions():
         suggestions_text.insert(tk.END, f"{idx}. {suggestion['title']} ({suggestion['release_date']}) - {suggestion['overview']}\n\n")
 
 # Your API key
-api_key = "cef81653fa5eeeedc626069e5addf099"
+api_key = "<API_KEY>"
 
 # Create the main window
 root = tk.Tk()
